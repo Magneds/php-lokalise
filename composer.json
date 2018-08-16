@@ -1,0 +1,44 @@
+{
+  "name": "magneds/lokalise",
+  "type": "library",
+  "description": "Lokalise API",
+  "keywords": [
+    "magneds",
+    "lokalise"
+  ],
+  "homepage": "https://github.com/magneds/php-lokalise",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Leon Rowland",
+      "email": "leon.rowland@magneds.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Magneds\\Lokalise\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Magneds\\Lokalise\\Test\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "~7.0",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5",
+    "squizlabs/php_codesniffer": "^2.3"
+  },
+  "scripts": {
+    "test": "phpunit",
+    "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+    "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
