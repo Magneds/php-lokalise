@@ -53,12 +53,12 @@ class ListAllLanguagesRequest implements RequestInterface
         $responseData = json_decode($response->getBody()->getContents(), true);
         $responseInfo = ResponseInfo::buildFromArray($responseData['response']);
 
-        if($responseInfo->getCode() !== 200) {
+        if ($responseInfo->getCode() !== 200) {
             return $responseInfo;
         }
 
         $languages = [];
-        foreach($responseData['languages'] as $language) {
+        foreach ($responseData['languages'] as $language) {
             $languages[] = new Language($language['iso'], $language['name'], $language['rtl'] === "1");
         }
 

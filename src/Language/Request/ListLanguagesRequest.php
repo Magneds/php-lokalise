@@ -71,7 +71,7 @@ class ListLanguagesRequest implements RequestInterface
         $responseData = json_decode($response->getBody()->getContents(), true);
 
         $languages = [];
-        foreach($responseData['languages'] as $projectLanguage) {
+        foreach ($responseData['languages'] as $projectLanguage) {
             $languages[] = new ProjectLanguage(
                 new Language($projectLanguage['iso'], $projectLanguage['name'], $projectLanguage['rtl'] === "1"),
                 (int)$projectLanguage['words'],

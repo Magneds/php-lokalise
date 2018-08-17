@@ -66,7 +66,7 @@ class SnapshotRequest implements RequestInterface
             'id' => $this->projectID->getID(),
         ];
 
-        if(!is_null($this->title)) {
+        if (!is_null($this->title)) {
             $body['title'] = $this->title;
         }
 
