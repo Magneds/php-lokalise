@@ -86,7 +86,7 @@ class AddProjectRequest implements RequestInterface
         $responseInfo = ResponseInfo::buildFromArray($responseData['response']);
 
         // Would be expecting 201 here.
-        if($responseInfo->getCode() !== 200) {
+        if ($responseInfo->getCode() !== 200) {
             return $responseInfo;
         }
 

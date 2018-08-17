@@ -56,12 +56,12 @@ class ListProjectsRequest implements RequestInterface
         $responseData = json_decode($response->getBody()->getContents(), true);
         $responseInfo = ResponseInfo::buildFromArray($responseData['response']);
 
-        if($responseInfo->getCode() !== 200) {
+        if ($responseInfo->getCode() !== 200) {
             return $responseInfo;
         }
 
         $projects  = [];
-        foreach($responseData['projects'] as $project) {
+        foreach ($responseData['projects'] as $project) {
             $projects[] = Project::buildFromArray($project);
         }
 

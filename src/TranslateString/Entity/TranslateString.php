@@ -2,6 +2,7 @@
 namespace Magneds\Lokalise\TranslateString\Entity;
 
 use DateTime;
+use DateTimeZone;
 
 class TranslateString
 {
@@ -77,17 +78,16 @@ class TranslateString
     public function __construct(
         string $key,
         string $translation,
-        string $pluralKey,
+        $pluralKey,
         int $platformMask,
         bool $hidden,
         array $tags,
         bool $fuzzy,
-        string $context,
+        $context,
         bool $archived,
         DateTime $modified,
         DateTime $created
-    )
-    {
+    ) {
         $this->key          = $key;
         $this->translation  = $translation;
         $this->pluralKey    = $pluralKey;
@@ -99,6 +99,32 @@ class TranslateString
         $this->archived     = $archived;
         $this->modified     = $modified;
         $this->created      = $created;
+    }
+
+    public static function buildFromArray($array)
+    {
+        $timezone = new DateTimeZone('Europe/Amsterdam');
+        $utc      = new DateTimeZone('UTC');
+
+        $created = DateTime::createFromFormat('Y-m-d H:i:s', $array['created_at'], $timezone);
+        $created->setTimezone($utc);
+
+        $modified = DateTime::createFromFormat('Y-m-d H:i:s', $array['modified_at'], $timezone);
+        $modified->setTimezone($utc);
+
+        return new TranslateString(
+            $array['key'],
+            $array['translation'],
+            $array['plural_key'],
+            $array['platform_mask'],
+            (bool) $array['is_hidden'],
+            $array['tags'],
+            (bool) $array['fuzzy'],
+            $array['context'],
+            (bool) $array['is_archived'],
+            $modified,
+            $created
+        );
     }
 
     /**

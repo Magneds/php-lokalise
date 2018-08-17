@@ -66,7 +66,7 @@ class AddLanguageRequest implements RequestInterface
     {
         $languages = [];
 
-        foreach($this->languages as $language) {
+        foreach ($this->languages as $language) {
             $languages[] = $language->getIso();
         }
 
