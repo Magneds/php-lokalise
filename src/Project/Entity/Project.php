@@ -49,9 +49,9 @@ class Project
     }
 
     /**
-     * @return string
+     * @return ProjectID
      */
-    public function getID(): string
+    public function getID(): ProjectID
     {
         return $this->id;
     }

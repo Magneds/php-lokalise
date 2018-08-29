@@ -1,14 +1,14 @@
 <?php // Copyright ⓒ 2018 Magneds IP B.V. - All Rights Reserved
-namespace Magneds\Lokalise\Language\Request;
+namespace Magneds\Lokalise\TranslateString\Request;
 
-use Magneds\Lokalise\Language\Entity\Language;
 use Magneds\Lokalise\Project\Entity\ProjectID;
 use Magneds\Lokalise\RequestInterface;
 use Magneds\Lokalise\ResponseInfo;
+use Magneds\Lokalise\TranslateString\Entity\Result;
+use Magneds\Lokalise\TranslateString\Entity\TranslateStringPartial;
 use Psr\Http\Message\ResponseInterface;
-use function json_decode;
 
-class AddLanguageRequest implements RequestInterface
+class AddOrUpdateTranslationsRequest implements RequestInterface
 {
     /**
      * @var ProjectID
@@ -16,19 +16,23 @@ class AddLanguageRequest implements RequestInterface
     protected $projectID;
 
     /**
-     * @var Language[]
+     * @var TranslateStringPartial[]
      */
-    protected $languages;
+    protected $data = [];
 
     /**
-     * AddLanguageRequest constructor.
+     * AddOrUpdateTranslationsRequest constructor.
      * @param ProjectID $projectID
-     * @param Language[] $languages
      */
-    public function __construct(ProjectID $projectID, array $languages)
+    public function __construct(ProjectID $projectID)
     {
         $this->projectID = $projectID;
-        $this->languages = $languages;
+    }
+
+    public function addData(TranslateStringPartial $partial)
+    {
+        $this->data[] = $partial;
+        return $this;
     }
 
     /**
@@ -48,7 +52,7 @@ class AddLanguageRequest implements RequestInterface
      */
     public function getURI()
     {
-        return 'language/add';
+        return 'string/set';
     }
 
     /**
@@ -64,25 +68,33 @@ class AddLanguageRequest implements RequestInterface
      */
     public function getBody()
     {
-        $languages = [];
-
-        foreach ($this->languages as $language) {
-            $languages[] = $language->getIso();
+        $data = [];
+        foreach ($this->data as $partial) {
+            $data[] = $partial->toArray();
         }
 
-        return [
-            'id' => $this->projectID->getID(),
-            'iso' => json_encode($languages),
+        $d = [
+            'id'   => $this->projectID->getID(),
+            'data' => json_encode($data)
         ];
+
+        return $d;
     }
 
     /**
      * @param ResponseInterface $response
-     * @return mixed
+     * @return ResponseInfo
      */
     public function handleResponse(ResponseInterface $response): ResponseInfo
     {
         $responseData = json_decode($response->getBody()->getContents(), true);
-        return ResponseInfo::buildFromArray($responseData['response']);
+        $responseInfo = ResponseInfo::buildFromArray($responseData['response']);
+
+        if($responseInfo->getCode() !== 200) {
+            return $responseInfo;
+        }
+
+        $responseInfo->setActionData(Result::buildFromArray($responseData['result']));
+        return $responseInfo;
     }
 }

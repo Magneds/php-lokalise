@@ -4,6 +4,7 @@ namespace Magneds\Lokalise\Client;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Magneds\Lokalise\RequestInterface;
+use Magneds\Lokalise\ResponseInfo;
 
 class LokaliseClient
 {
@@ -37,7 +38,7 @@ class LokaliseClient
 
     /**
      * @param RequestInterface $request
-     * @return mixed
+     * @return ResponseInfo
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function send(RequestInterface $request)

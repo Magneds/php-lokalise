@@ -42,7 +42,7 @@ class Language
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -50,7 +50,7 @@ class Language
     /**
      * @return bool
      */
-    public function isRtl(): bool
+    public function isRtl()
     {
         return $this->rtl;
     }
