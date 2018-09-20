@@ -28,7 +28,7 @@ class TranslateStringPartial
     /**
      * @var string[]
      */
-    protected $translations;
+    protected $translations = [];
 
     /**
      * TranslateStringPartial constructor.
@@ -112,12 +112,7 @@ class TranslateStringPartial
     public function addTranslation(Language $language, $translation)
     {
         $isoLang = $language->getIso();
-
-        if(!array_key_exists($isoLang, $this->translations)) {
-            $this->translations[$isoLang] = [];
-        }
-
-        $this->translations[$isoLang][] = $translation;
+        $this->translations[$isoLang] = $translation;
     }
 
     public function toArray()
