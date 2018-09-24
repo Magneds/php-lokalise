@@ -73,7 +73,6 @@ class AddOrUpdateTranslationsRequest implements RequestInterface
             $data[] = $partial->toArray();
         }
 
-        var_dump($data);
         $d = [
             'id'   => $this->projectID->getID(),
             'data' => json_encode($data)
