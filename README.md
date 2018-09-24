@@ -90,15 +90,15 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [ico-version]: https://img.shields.io/packagist/v/magneds/lokalise.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/magneds/lokalise/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/magneds/lokalise.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/Magneds/php-lokalise/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/Magneds/php-lokalise.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/magneds/lokalise.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/magneds/lokalise.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/magneds/lokalise
-[link-travis]: https://travis-ci.org/magneds/lokalise
-[link-scrutinizer]: https://scrutinizer-ci.com/g/magneds/lokalise/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/magneds/lokalise
+[link-travis]: https://travis-ci.org/Magneds/php-lokalise
+[link-scrutinizer]: https://scrutinizer-ci.com/g/Magneds/php-lokalise/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/Magneds/php-lokalise
 [link-downloads]: https://packagist.org/packages/magneds/lokalise
 [link-author]: https://github.com/magneds
 [link-contributors]: ../../contributors
