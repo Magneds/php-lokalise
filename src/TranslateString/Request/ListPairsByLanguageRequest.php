@@ -92,7 +92,6 @@ class ListPairsByLanguageRequest implements RequestInterface
             return $responseInfo;
         }
 
-        var_dump($this->projectID->getID());
         $languageStringCollections = [];
         foreach ($responseData['strings'] as $lang => $strings) {
 
