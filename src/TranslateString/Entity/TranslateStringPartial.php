@@ -23,7 +23,7 @@ class TranslateStringPartial
     /**
      * @var string[]
      */
-    protected $tags;
+    protected $tags = [];
 
     /**
      * @var string[]
@@ -102,6 +102,20 @@ class TranslateStringPartial
     }
 
     /**
+     * @param $tag
+     * @return $this
+     */
+    public function addTag(string $tag)
+    {
+        if (in_array($tag, $this->tags)) {
+            return $this;
+        }
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
      * @return string[]
      */
     public function getTranslations(): array
@@ -126,5 +140,14 @@ class TranslateStringPartial
         ];
 
         return array_filter($data);
+    }
+
+    public static function buildFromTranslateString(TranslateString $translateString)
+    {
+        $partial = new self($translateString->getKey());
+        $partial->setPlatformMask($translateString->getPlatformMask());
+        $partial->setTags($translateString->getTags());
+
+        return $partial;
     }
 }
