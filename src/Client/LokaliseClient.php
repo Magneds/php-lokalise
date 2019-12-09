@@ -49,6 +49,7 @@ class LokaliseClient
         $options = [
             'query'       => ['api_token' => $this->apiKey],
             'form_params' => array_merge(['api_token' => $this->apiKey], $request->getBody()),
+            'idn_conversion' => false
         ];
 
         $response = $this->client->request(
